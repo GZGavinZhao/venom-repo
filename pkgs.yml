@@ -1,0 +1,81 @@
+bzip2:
+
+dash:
+
+ducktape:
+
+gdbm:
+  - readline
+
+gettext:
+  - libunistring
+  - ncurses
+
+gnutls:
+  - libidn2
+  - libtasn1
+  - nettle
+  - p11-kit
+
+libidn2:
+  - libunistring
+
+inetutils:
+
+libedit:
+
+libtasn1:
+
+libunistring:
+
+libyaml:
+
+linux-pam:
+
+nettle:
+
+ncurses:
+
+openssl:
+
+p11-kit:
+  - libtasn1
+
+pcre2:
+  - bzip2
+
+python:
+  - ncurses
+  - openssl
+  - xz
+
+python-jinja:
+  - python
+
+python-babel:
+  - python
+  - python-pytz
+
+python-markupsafe:
+  - python
+
+python-pytz:
+  - python
+
+readline:
+  - ncurses
+
+ruby:
+  - gdbm
+  - yaml
+
+systemd:
+  - gettext
+  - openssl
+  - linux-pam
+  - pcre2
+  - python-jinja
+  - xz
+  - zlib
+
+xz:
