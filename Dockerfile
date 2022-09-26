@@ -1,4 +1,18 @@
-FROM debian:bookworm as build
+FROM debian:bookworm-slim as runtime
+
+RUN apt update && apt install -yq --no-install-recommends ca-certificates \
+		libphobos2-ldc-shared100 \
+		xxhash \
+		libcurl4 \
+		libzstd1 \
+		liblmdb0 \
+		zlib1g \
+		&& apt clean \
+		&& rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
+
+
+
+FROM runtime as devel
 
 RUN apt update && apt install -yq --no-install-recommends \
 		build-essential \
@@ -41,6 +55,7 @@ WORKDIR /serpent/moss
 RUN dub build
 
 
+
 FROM golang:1.19-bullseye as server
 
 RUN mkdir -p /server/fc
@@ -51,18 +66,19 @@ COPY fc fc
 ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64
 RUN go build -o server ./fc/server
 
-FROM debian:bookworm-slim as final
 
-RUN apt update && apt install -yq --no-install-recommends ca-certificates \
-		libphobos2-ldc-shared100 \
-		xxhash \
-		libcurl4 \
-		libzstd1 \
-		liblmdb0 \
-		zlib1g \
-		&& apt clean \
-		&& rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
-COPY --from=build /serpent/moss/bin/moss /usr/bin/moss
+
+FROM runtime as moss
+
+COPY --from=devel /serpent/moss/bin/moss /usr/bin/moss
+RUN apt clean && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
+CMD ["/bin/bash"]
+
+
+
+FROM moss as fc-server
+
 COPY --from=server /server/server /server/server
+RUN apt clean && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 EXPOSE 9000
 CMD ["/server/server"]

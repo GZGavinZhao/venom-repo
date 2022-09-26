@@ -467,18 +467,18 @@ resource "alicloud_fc_service" "repo" {
 }
 
 resource "alicloud_fc_function" "indexer" {
-  service       = alicloud_fc_service.repo.name
-  name          = "${var.repo_name}-repo-indexer"
-  description   = <<EOT
+  service     = alicloud_fc_service.repo.name
+  name        = "${var.repo_name}-repo-indexer"
+  description = <<EOT
   ${local.repoName} repo auto indexer.
   ${local.repoName}仓库的自动indexer。
   EOT
-  handler       = "no-handler"
-  memory_size   = "256"
-  runtime       = "custom-container"
-  ca_port = 9000
+  handler     = "no-handler"
+  memory_size = "256"
+  runtime     = "custom-container"
+  ca_port     = 9000
   custom_container_config {
-    image = "registry-vpc.us-east-1.aliyuncs.com/serpent-os/moss:latest"
+    image   = "registry-vpc.us-east-1.aliyuncs.com/serpent-os/moss:fc-server"
     command = "[\"/server/server\"]"
   }
   environment_variables = {
