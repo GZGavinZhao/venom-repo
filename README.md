@@ -64,7 +64,11 @@ You are encouraged to forget everything you thought you knew about how things ar
 
 ### How to get started writing a recipe
 
-To get a basic recipe, use `boulder new -h` to get started. And no, boulder does not yet support git sources (the help info is lying to you!).
+To get a basic recipe, use `boulder new -h` to get started. And no, boulder does not yet support git sources ([issue](https://github.com/serpent-os/boulder/issues/25)).
+
+### The recipe `pkg/` dir and `%(pkgdir)`
+
+Place extra files such as patches, vendor configs etc. in the `pkg/` dir inside the  recipe dir.  Files inside `pkg/` will automatically be copied over to  `%(pkgdir)` during boulder builds, from where each can be referenced as `%(pkgdir)/path/filename` in the recipe.  The directory name `pkg/` was chosen because it's short and stands out in `tree` invocations.
 
 ### What to commit
 
@@ -86,7 +90,7 @@ No functional change commits use the [NFC] tag: `shells/fish: [NFC] Tweak commen
 
 ### Recipe licensing
 
-We strongly prefer the Zlib license on code and recipes. `boulder new` has been updated to use a REUSE compliant Zlib header, but existing recipes will need to be updated with the following REUSE-compliant verbiage at the top:
+We strongly prefer the Zlib license on code and recipes due to its uncomplicated nature. `boulder new` has been updated to use a REUSE compliant Zlib header, but existing recipes will need to be updated with the following REUSE-compliant verbiage at the top:
 
     #
     # SPDX-FileCopyrightText: © 2020-2022 Serpent OS Developers

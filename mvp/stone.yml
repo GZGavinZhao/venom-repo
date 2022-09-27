@@ -16,19 +16,26 @@ rundeps   :
     - dash
     - dbus
     - dbus-broker
+    - file
     - git
     - grep
     - gzip
+    - inetutils
+    - iproute2
     - less
     - linux-pam
     - nano
+    - neofetch
     - nss
+    - opendoas
     - openssh
     - procps-ng
     - python
+    - screen
     - sed
     - shadow
     - systemd
+    - tree
     - util-linux
     - unzip
     - vim

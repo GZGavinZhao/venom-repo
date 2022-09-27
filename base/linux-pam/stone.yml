@@ -1,3 +1,8 @@
+#
+# SPDX-FileCopyrightText: © 2020-2022 Serpent OS Developers
+#
+# SPDX-License-Identifier: Zlib
+#
 name        : linux-pam
 version     : 1.5.2
 release     : 2
@@ -14,13 +19,16 @@ builddeps   :
     - libcxx-devel
     - pkgconfig(libxcrypt)
 setup       : |
-    #%patch %(pkgdir)/stateless/0001-pam_env-Support-a-stateless-configuration.patch
+    %patch %(pkgdir)/stateless/0001-pam_env-Support-a-stateless-configuration.patch
     %patch %(pkgdir)/stateless/0002-pam_shells-Support-stateless-shells-file.patch
+    %patch %(pkgdir)/stateless/0003-pam_env-Only-report-non-ENOENT-errors-for-env-file.patch
+    %patch %(pkgdir)/stateless/0004-Stateless-pam_env-config-file.patch
 
-    %configure --disable-nis \
-        --disable-econf \
-        --enable-vendordir="%(vendordir)" \
-        --with-kernel-overflow-uid=65534
+    %configure --disable-static \
+               --disable-nis \
+               --disable-econf \
+               --enable-vendordir="%(vendordir)" \
+               --with-kernel-overflow-uid=65534
 build       : |
     %make
 install     : |
