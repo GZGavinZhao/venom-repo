@@ -34,6 +34,7 @@ RUN apt update && apt install -yq --no-install-recommends \
 
 ENV CC=clang
 ENV CXX=clang++
+ENV DFLAGS="-L-lz"
 
 RUN mkdir /serpent
 WORKDIR /serpent
@@ -46,13 +47,40 @@ RUN git clone --shallow-submodules --recursive https://github.com/serpent-os/mos
 RUN git clone --shallow-submodules --recursive https://github.com/serpent-os/moss-fetcher
 RUN git clone --shallow-submodules --recursive https://github.com/serpent-os/moss-format
 RUN git clone --shallow-submodules --recursive https://github.com/serpent-os/moss-vendor
-
-# Fetch moss
+RUN git clone --shallow-submodules --recursive https://github.com/serpent-os/boulder
 RUN git clone --shallow-submodules --recursive https://github.com/serpent-os/moss
-WORKDIR /serpent/moss
+RUN git clone --shallow-submodules --recursive https://github.com/serpent-os/moss-container
 
-# Build moss. Use dub as meson struggles to build.
-RUN dub build
+
+
+FROM devel as moss-devel
+
+WORKDIR /serpent/moss
+ENV DESTDIR=/serpent/destdir
+
+RUN meson build --prefix=/usr --buildtype=release \
+	&& ninja -C build -j4 \
+	&& ninja -C build install
+
+
+
+FROM moss-devel as moss-container-devel
+
+WORKDIR /serpent/moss-container
+
+RUN meson build --prefix=/usr --buildtype=release \
+	&& ninja -C build -j4 \
+	&& ninja -C build install
+
+
+
+FROM moss-container-devel as boulder-devel
+
+WORKDIR /serpent/boulder
+
+RUN meson build --prefix=/usr --buildtype=release \
+	&& ninja -C build -j4 \
+	&& ninja -C build install
 
 
 
@@ -70,7 +98,7 @@ RUN go build -o server ./fc/server
 
 FROM runtime as moss
 
-COPY --from=devel /serpent/moss/bin/moss /usr/bin/moss
+COPY --from=moss-devel /serpent/moss/build/moss /usr/bin/moss
 RUN apt clean && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 CMD ["/bin/bash"]
 
@@ -82,3 +110,9 @@ COPY --from=server /server/server /server/server
 RUN apt clean && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 EXPOSE 9000
 CMD ["/server/server"]
+
+
+
+FROM runtime as boulder
+
+COPY --from=boulder-devel /serpent/destdir /

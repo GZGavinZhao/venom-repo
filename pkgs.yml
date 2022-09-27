@@ -1,8 +1,28 @@
+autoconf:
+  - slibtool
+
 bzip2:
+
+codespell:
+  - python
 
 dash:
 
 ducktape:
+
+elfutils:
+  - curl
+  - bzip2
+
+fish:
+  - gettext
+  - ncurses
+  - pcre2
+
+gdb:
+  - ncurses
+  - readline
+  - zlib
 
 gdbm:
   - readline
@@ -11,18 +31,34 @@ gettext:
   - libunistring
   - ncurses
 
+git:
+  - openssl
+
 gnutls:
   - libidn2
   - libtasn1
   - nettle
   - p11-kit
 
+grep:
+  - pcre2
+
+less:
+  - ncurses
+  - pcre2
+
 libidn2:
   - libunistring
 
 inetutils:
 
+ldns:
+  - openssl
+
 libedit:
+
+libmicrohttpd:
+  - gnutls
 
 libtasn1:
 
@@ -32,9 +68,19 @@ libyaml:
 
 linux-pam:
 
+neofetch:
+
 nettle:
 
 ncurses:
+
+nghttp2:
+
+openssh:
+  - ldns
+  - libedit
+  - linux-pam
+  - zlib
 
 openssl:
 
@@ -43,6 +89,10 @@ p11-kit:
 
 pcre2:
   - bzip2
+
+procps-ng:
+  - ncurses
+  - systemd
 
 python:
   - ncurses
@@ -69,6 +119,10 @@ ruby:
   - gdbm
   - yaml
 
+slibtool:
+
+sqlite:
+
 systemd:
   - gettext
   - openssl
@@ -78,4 +132,25 @@ systemd:
   - xz
   - zlib
 
+tree:
+
+unzip:
+  - bzip2
+
+vim:
+  - ncurses
+
+wget:
+  - brotli
+  - nghttp2
+  - openssl
+  - xz
+  - zlib
+
 xz:
+
+zlib:
+
+zsh:
+  - gdbm
+  - ncurses
