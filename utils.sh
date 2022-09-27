@@ -4,6 +4,10 @@ upload() {
 	fd . -I -e stone $1 --exec aliyun oss cp {} oss://venom-testing/{}
 }
 
+delete() {
+	aliyun oss rm -r oss://venom-testing/$1
+}
+
 check() {
 	aliyun oss ls oss://venom-testing
 }
@@ -14,4 +18,8 @@ build() {
 
 find-pkg() {
 	fd -I -e stone $1
+}
+
+clean() {
+	git clean -f -x -e .env -e "*tfstate*"
 }
