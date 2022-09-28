@@ -144,6 +144,9 @@ slibtool:
 
 sqlite:
 
+strace:
+  - elfutils
+
 systemd:
   - gettext
   - openssl
@@ -154,6 +157,8 @@ systemd:
   - zlib
 
 tree:
+
+tzdata:
 
 unzip:
   - bzip2
