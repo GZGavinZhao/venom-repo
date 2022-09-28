@@ -22,6 +22,7 @@ fish:
 gdb:
   - ncurses
   - readline
+  - xz
   - zlib
 
 gdbm:
@@ -43,14 +44,16 @@ gnutls:
 grep:
   - pcre2
 
+inetutils:
+
+iproute2:
+
 less:
   - ncurses
   - pcre2
 
 libidn2:
   - libunistring
-
-inetutils:
 
 ldns:
   - openssl
@@ -68,6 +71,10 @@ libyaml:
 
 linux-pam:
 
+nano:
+  - ncurses
+  - zlib
+
 neofetch:
 
 nettle:
@@ -75,6 +82,9 @@ nettle:
 ncurses:
 
 nghttp2:
+
+opendoas:
+  - linux-pam
 
 openssh:
   - ldns
@@ -118,6 +128,10 @@ readline:
 ruby:
   - gdbm
   - yaml
+
+screen:
+  - ncurses
+  - linux-pam
 
 slibtool:
 
