@@ -1,6 +1,10 @@
 autoconf:
   - slibtool
 
+bash:
+  - readline
+  - ncurses
+
 bzip2:
 
 codespell:
@@ -131,6 +135,9 @@ ruby:
 
 screen:
   - ncurses
+  - linux-pam
+
+shadow:
   - linux-pam
 
 slibtool:
