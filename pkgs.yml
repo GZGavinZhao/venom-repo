@@ -23,6 +23,9 @@ fish:
   - ncurses
   - pcre2
 
+fuse:
+  - systemd
+
 gdb:
   - ncurses
   - readline
@@ -75,6 +78,8 @@ libyaml:
 
 linux-pam:
 
+lz4:
+
 nano:
   - ncurses
   - zlib
@@ -120,7 +125,19 @@ python-babel:
   - python
   - python-pytz
 
+python-build:
+  - python
+  - python-pep517
+  - python-tomli
+
 python-markupsafe:
+  - python
+
+python-pep517:
+  - python
+  - python-tomli
+
+python-tomli:
   - python
 
 python-pytz:
