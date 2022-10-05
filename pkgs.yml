@@ -12,7 +12,8 @@ codespell:
 
 dash:
 
-ducktape:
+dbus:
+  - systemd
 
 elfutils:
   - curl
@@ -23,7 +24,7 @@ fish:
   - ncurses
   - pcre2
 
-fuse:
+fuse3:
   - systemd
 
 gdb:
@@ -55,6 +56,8 @@ inetutils:
 
 iproute2:
 
+kakoune:
+
 less:
   - ncurses
   - pcre2
@@ -65,7 +68,17 @@ libidn2:
 ldns:
   - openssl
 
+libarchive:
+  - libxml2
+  - lz4
+  - openssl
+  - xz
+  - zlib
+
 libedit:
+
+libevent:
+  - openssl
 
 libmicrohttpd:
   - gnutls
@@ -73,6 +86,13 @@ libmicrohttpd:
 libtasn1:
 
 libunistring:
+
+libxml2:
+  - ncurses
+  - python3
+  - readline
+  - xz
+  - zlib
 
 libyaml:
 
@@ -130,14 +150,38 @@ python-build:
   - python-pep517
   - python-tomli
 
+python-installer:
+  - python
+  - python-flit-core
+
+python-flit-core:
+  - python
+
 python-markupsafe:
   - python
+
+python-packaging:
+  - python
+  - python-pyparsing
 
 python-pep517:
   - python
   - python-tomli
 
+python-pyparsing:
+  - python
+
+python-six:
+  - python
+  # https://github.com/serpent-os/boulder/pull/36
+  - python-build
+  - python-installer
+  - python-wheel
+
 python-tomli:
+  - python
+
+python-wheel:
   - python
 
 python-pytz:
@@ -173,6 +217,10 @@ systemd:
   - xz
   - zlib
 
+tmux:
+  - libevent
+  - ncurses
+
 tree:
 
 tzdata:
@@ -182,6 +230,8 @@ unzip:
 
 vim:
   - ncurses
+
+vtm:
 
 wget:
   - brotli

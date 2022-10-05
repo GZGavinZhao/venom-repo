@@ -44,3 +44,8 @@ terraform.rc
 main
 build/
 output/
+
+# Infra
+infra/
+main.sync
+merge.txt
