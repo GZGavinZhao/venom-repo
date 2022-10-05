@@ -13,11 +13,14 @@ codespell:
 dash:
 
 dbus:
-  - systemd
 
 elfutils:
   - curl
   - bzip2
+  - libarchive
+  - libmicrohttpd
+  - sqlite
+  - zlib
 
 fish:
   - gettext
@@ -42,12 +45,16 @@ gettext:
 
 git:
   - openssl
+  - pcre2
 
 gnutls:
   - libidn2
   - libtasn1
   - nettle
   - p11-kit
+
+golang:
+  - bash
 
 grep:
   - pcre2
@@ -89,7 +96,7 @@ libunistring:
 
 libxml2:
   - ncurses
-  - python3
+  - python
   - readline
   - xz
   - zlib
@@ -147,6 +154,7 @@ python-babel:
 
 python-build:
   - python
+  - python-packaging
   - python-pep517
   - python-tomli
 
@@ -190,6 +198,9 @@ python-pytz:
 readline:
   - ncurses
 
+restic:
+  - golang
+
 ruby:
   - gdbm
   - yaml
@@ -209,9 +220,11 @@ strace:
   - elfutils
 
 systemd:
+  - dbus
   - gettext
-  - openssl
   - linux-pam
+  - lz4
+  - openssl
   - pcre2
   - python-jinja
   - xz
